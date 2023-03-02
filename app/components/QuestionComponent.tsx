@@ -40,25 +40,26 @@ export default function QuestionComponent({ initialQuestion }: Props) {
     };
     
     return (
-        <div>
-            <h2>{question.question}</h2>
+        <div className="bg-white rounded-md shadow p-6">
+            <h2 className="text-xl font-medium mb-2">{question.question}</h2>
             <form onSubmit={handleSubmit}>
                 {question?.choices?.map((choice: QuestionChoice, index: number) => (
                     <div key={index}>
-                        <label>
+                        <label className="inline-flex items-center">
                             <input
                                 type="radio"
                                 value={choice.label}
                                 checked={selectedAnswer === index}
                                 onChange={() => handleChoiceChange(index)}
+                                className="form-radio h-5 w-5 text-green-600"
                             />
-                            {choice.label}
+                            <span className="ml-2 text-gray-700">{choice.label}</span>
                         </label>
                     </div>
                 ))}
-                <button type="submit">Submit</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit</button>
             </form>
-            {showResult && <p>{resultText}</p>}
+            {showResult && <p className={`${resultText.includes('incorrect') ? 'text-red-600' : 'text-green-600'} mt-4`}>{resultText}</p>}
         </div>
     );
 }

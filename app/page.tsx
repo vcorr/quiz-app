@@ -1,4 +1,6 @@
 "use client";
+import "./globals.css"
+
 import { fetchQuestionData, Question } from '@/utils';
 import { useEffect, useState } from 'react';
 import QuestionComponent from './components/QuestionComponent';
@@ -23,12 +25,13 @@ const QuestionsPage = () => {
 
     return (
         <>
-            <h1>Questions Page</h1>
             {questions && questions.length > 0 && (
-                <>
-                    <QuestionComponent initialQuestion={questions[currentQuestionIndex]}  />
-                    <button onClick={handleNextClick}>Next</button>
-                </>
+                <div>
+                    <QuestionComponent initialQuestion={questions[currentQuestionIndex]} />
+                    <div className="flex justify-end">
+                    <button onClick={handleNextClick} className=" py-2 px-4 bg-blue-500 text-white rounded-md disabled:bg-gray-400">Next</button>
+                    </div>
+                </div>
             )}
             {!questions || questions.length === 0 && (
                 <p>Loading...</p>
