@@ -5,12 +5,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## ChatGPT generated logic
 
-Most of this apps logic was generated using ChatGPT via a [plugin](https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt) for Visual Studio Code.
+Most of this app's logic was generated using ChatGPT via a [plugin](https://marketplace.visualstudio.com/items?itemName=gencay.vscode-chatgpt) for Visual Studio Code.
 
-The following steps were taken to create the question quiz: 
-- a JSON schema was generated to define the structure of the questions.
+The following steps were taken to create the app: 
+- a JSON schema was generated to define the structure of the questions
 - a utility function for reading a JSON file was generated
-- Next.js components were generated to display the questions. 
+- Next.js components were generated to display the questions and provide answer choices
   
 Sometimes the generated code required further discussion with ChatGPT to get it to work as intended, but very little "hand coding" was necessary. 
 
