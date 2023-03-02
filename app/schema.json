@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Multiple Choice Question Schema",
+    "type": "object",
+    "properties": {
+      "question": {
+        "type": "string"
+      },
+      "answers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "answer_text": {
+              "type": "string"
+            },
+            "is_correct": {
+              "type": "boolean"
+            }
+          },
+          "required": ["answer_text", "is_correct"],
+          "additionalProperties": false
+        },
+        "minItems": 4,
+        "maxItems": 4,
+        "uniqueItems": true
+      }
+    },
+    "required": ["question", "answers"],
+    "additionalProperties": false
+  }
+  
