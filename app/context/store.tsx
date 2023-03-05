@@ -15,7 +15,10 @@ const GlobalContext = createContext<ContextProps>({
 
 })
 
-export const GlobalContextProvider = ({ children }) => {
+interface Props {
+    children: any
+}
+export const GlobalContextProvider = ({ children }: Props) => {
     const [score, setScore] = useState(0);
     
     return (
