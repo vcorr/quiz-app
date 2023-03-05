@@ -16,6 +16,17 @@ Sometimes the generated code required further discussion with ChatGPT to get it 
 
 Finally, Tailwind configuration was generated along with basic styling, to improve the appearance of the app.
 
+To gerate the code I currently try to keep my prompts as specific as possible and avoid asking too much at once.
+For example the following seems to produce fairly good results
+```
+Given the JSON schema at https://github.com/vcorr/quiz-app/blob/main/app/schema.json 
+create a Next.js component that will display the question from a JSON file that follows that schema
+```
+You can also try to ask ChatGPT to improve the initial answer with prompts like
+```
+Improve the Quiz component above so that it also displays the answer choices from the JSON file
+```
+Remember that ChatGPT is not up-to-date with latest Next.js version, so you need to adjust the generated code if you want to use the latest features.
 
 ## Deployed at Vercel
 
