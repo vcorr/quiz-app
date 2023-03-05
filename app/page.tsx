@@ -4,8 +4,11 @@ import "./globals.css"
 import { fetchQuestionData, Question } from '@/utils';
 import { useEffect, useState } from 'react';
 import QuestionComponent from './components/QuestionComponent';
+import { useGlobalContext } from "./context/store";
+import TopBar from "./components/TopBar";
 
 const QuestionsPage = () => {
+    const { score, setScore } = useGlobalContext();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 
@@ -15,21 +18,25 @@ const QuestionsPage = () => {
             setQuestions(data);
         }
         loadQuestion();
+        setScore(0);
     }, []);
 
-    const handleNextClick = () => {
-        if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(index => index + 1);
-        }
+    const handleNextClick = (correct: boolean) => {
+        setTimeout(() => {
+            if (currentQuestionIndex < questions.length - 1) {
+                setCurrentQuestionIndex(index => index + 1);
+            }
+        }, 1000);
     };
+
 
     return (
         <>
             {questions && questions.length > 0 && (
                 <div>
-                    <QuestionComponent initialQuestion={questions[currentQuestionIndex]} />
+                    <TopBar score={score} />
+                    <QuestionComponent onUserAnswer={handleNextClick} initialQuestion={questions[currentQuestionIndex]} />
                     <div className="flex justify-end">
-                    <button onClick={handleNextClick} className=" py-2 px-4 bg-blue-500 text-white rounded-md disabled:bg-gray-400">Next</button>
                     </div>
                 </div>
             )}
