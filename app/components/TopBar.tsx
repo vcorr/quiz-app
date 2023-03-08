@@ -1,14 +1,12 @@
-"use client";
 import React from 'react'
-import { useGlobalContext } from '../context/store';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-interface Props {
-  score: number
-}
+library.add(faGear);
+
 
 export default function TopBar() {
-      const { score, setScore } = useGlobalContext();
-
   return (
     <header className="bg-teal-200 shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +14,9 @@ export default function TopBar() {
           <a href="/" className="flex-shrink-0 flex items-center">
             <span className="font-bold text-lg ml-3">The Quiz App</span>
           </a>
-          <div>Score: {score}</div>
+          <a href="/admin" className="flex-shrink-0 flex items-center">
+          <FontAwesomeIcon className='w-8 h-8' icon={faGear} />
+          </a>
         </div>
       </div>
     </header>

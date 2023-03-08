@@ -47,6 +47,7 @@ export default function QuestionComponent({ onUserAnswer, initialQuestion }: Pro
     };
 
     return (
+        <div>
         <div className="bg-white rounded-md  p-6">
             <h2 className="text-xl font-medium mb-2">{question.question}</h2>
             <form onSubmit={handleSubmit}>
@@ -64,9 +65,16 @@ export default function QuestionComponent({ onUserAnswer, initialQuestion }: Pro
                         </label>
                     </div>
                 ))}
-                <button disabled={selectedAnswer === -1} type="submit" className=" disabled:opacity-20 bg-teal-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit</button>
+                <div className="flex w-full justify-between items-baseline">
+                  <button disabled={selectedAnswer === -1} type="submit" className="justify-self-start disabled:opacity-20 bg-teal-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit</button>
+                  <div>Score: {score}</div>
+                </div>
             </form>
-            {showResult && <p className={`${resultText.includes('incorrect') ? 'text-red-600' : 'text-green-600'} mt-4`}>{resultText}</p>}
+            </div>
+            {showResult && <div className=" flex w-full h-10 bg-teal-200 justify-center items-center">
+            <p className={`${resultText.includes('incorrect') ? 'text-red-600' : 'text-green-600'}`}>{resultText}</p>
+            </div>}
+
         </div>
     );
 }

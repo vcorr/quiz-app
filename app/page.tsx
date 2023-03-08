@@ -5,10 +5,6 @@ import clientPromise from "./lib/mongo";
 import QuestionWrapper from "./components/QuestionWrapper";
 import { Question } from "@/utils";
 
-export interface Restaurant {
-    name: string;
-    cuisine: string;
-}
 
 const MainPage = async () => {
 
