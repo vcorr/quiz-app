@@ -1,50 +1,28 @@
-"use client";
 import "./globals.css"
 
-import { fetchQuestionData, Question } from '@/utils';
-import { useEffect, useState } from 'react';
-import QuestionComponent from './components/QuestionComponent';
-import { useGlobalContext } from "./context/store";
 import TopBar from "./components/TopBar";
+import clientPromise from "./lib/mongo";
+import QuestionWrapper from "./components/QuestionWrapper";
+import { Question } from "@/utils";
 
-const QuestionsPage = () => {
-    const { score, setScore } = useGlobalContext();
-    const [questions, setQuestions] = useState<Question[]>([]);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+export interface Restaurant {
+    name: string;
+    cuisine: string;
+}
 
-    useEffect(() => {
-        async function loadQuestion() {
-            const data = await fetchQuestionData();
-            setQuestions(data);
-        }
-        loadQuestion();
-        setScore(0);
-    }, []);
+const MainPage = async () => {
 
-    const handleNextClick = (correct: boolean) => {
-        setTimeout(() => {
-            if (currentQuestionIndex < questions.length - 1) {
-                setCurrentQuestionIndex(index => index + 1);
-            }
-        }, 1000);
-    };
-
+    const client = await clientPromise;
+    const collection = client.db('quiz-app').collection<Question>('questions');
+    const questions = await collection.find().toArray();
+    console.log("questions", questions);
 
     return (
-        <>
-            {questions && questions.length > 0 && (
-                <div>
-                    <TopBar score={score} />
-                    <QuestionComponent onUserAnswer={handleNextClick} initialQuestion={questions[currentQuestionIndex]} />
-                    <div className="flex justify-end">
-                    </div>
-                </div>
-            )}
-            {!questions || questions.length === 0 && (
-                <p>Loading...</p>
-            )}
-        </>
+        <div>
+            <TopBar />
+            <QuestionWrapper Questions={questions} />
+        </div>
     );
 };
 
-export default QuestionsPage;
+export default MainPage;
