@@ -47,7 +47,7 @@ export default function QuestionComponent({ onUserAnswer, initialQuestion }: Pro
     };
 
     return (
-        <div className="bg-white rounded-md shadow p-6">
+        <div className="bg-white rounded-md  p-6">
             <h2 className="text-xl font-medium mb-2">{question.question}</h2>
             <form onSubmit={handleSubmit}>
                 {question?.choices?.map((choice: QuestionChoice, index: number) => (
@@ -64,7 +64,7 @@ export default function QuestionComponent({ onUserAnswer, initialQuestion }: Pro
                         </label>
                     </div>
                 ))}
-                <button disabled={selectedAnswer === -1} type="submit" className=" disabled:opacity-20 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit</button>
+                <button disabled={selectedAnswer === -1} type="submit" className=" disabled:opacity-20 bg-teal-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Submit</button>
             </form>
             {showResult && <p className={`${resultText.includes('incorrect') ? 'text-red-600' : 'text-green-600'} mt-4`}>{resultText}</p>}
         </div>
