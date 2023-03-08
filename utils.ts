@@ -11,8 +11,3 @@ export interface Question {
   answer: number;
 }
 
-export async function fetchQuestionData(): Promise<Question[]> {
-  const response = await fetch("/questions.json");
-  const data = await response.json();
-  return data as Question[];
-}
